@@ -16,8 +16,9 @@ def BruteForce(pat, text):
         if text[i] != pat[j]: # 일치하지 않은 곳
             # text의 현재 위치에서 일치하지 않는 곳을 발견! -> i를 증가시켜야 함
             # j값과 일치하는 요소가 i에 나올 때까지 j는 증가시킬 필요가 없음
+
             #  지금위치 - j
-            i = i - j
+            i = i - j # text의 인덱스 i를 현재 실패한 위치로 되돌리는 역할
             # 순회 한 번이 끝나면 무조건 앞으로 나아가야 함
             # 일치하는 값이 나오지 않았다면 j는 제자리에 있어야 하므로 여기서 j에 -1을 해줌
             j = - 1
@@ -27,7 +28,7 @@ def BruteForce(pat, text):
 
         # 검색 성공
         if j == M:
-            return i - M
+            return i - M # text에서 패턴이 시작된 인덱스를 반환
         else:
             return -1
 
@@ -50,6 +51,6 @@ def BruteForceV2(pat, text):
             return idx
     # 검색실패
     else:
-        return -1 # for문을 다 돌았다 = 패턴 매칭이 안됐다.
+        return -1 # 외부 for문을 다 돌았다 = 패턴 매칭이 안됐다.
 
 
