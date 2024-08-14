@@ -38,25 +38,9 @@ for tc in range(1, T+1):
     # 2차원 리스트로 값을 갱신하고 최종값은 연속해서 출력
     matrix_90, matrix_180, matrix_270 = deg_90(N,N_list),deg_180(N,N_list),deg_270(N,N_list)
 
-    print(f"{tc}")
-    for row in matrix_90:
-        print(''.join(map(str, row)))
-    for row in matrix_180:
-        print(''.join(map(str, row)))
-    for row in matrix_270:
-        print(''.join(map(str, row)))
-
-
-    """
-    matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-]
-
-# 각 행을 문자열로 변환하여 출력
-for row in matrix:
-    # 행의 각 요소를 문자열로 변환하고, 이를 join()으로 연결
-    print(''.join(map(str, row)))
-
-    """
+    print(f"#{tc}")
+    for i in range(N):
+        row_90 = ''.join(map(str, matrix_90[i]))
+        row_180 = ''.join(map(str, matrix_180[i]))
+        row_270 = ''.join(map(str, matrix_270[i]))
+        print(f"{row_90} {row_180} {row_270}")

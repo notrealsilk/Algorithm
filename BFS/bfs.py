@@ -55,21 +55,27 @@ def BFS(start):
 
 
 # 노드 수(V)와 간선 수(E) 입력
-V, E = map(int, input().split())
+V, E = map(int, input().split()) # V : 마지막 정점 번호, E : 간선 수
 
 # 간선 정보 입력
-edge_info = list(map(int, input().split()))
+arr = list(map(int, input().split()))
 
 # 그래프 초기화 (인접 행렬)
 G = [[0] * (V + 1) for _ in range(V + 1)]
+# G =  [[] for _in range(V+1)]
 
 # 방문 여부를 체크할 리스트 초기화
 visited = [0 for _ in range(V + 1)]
 
 # 간선 정보를 바탕으로 그래프(인접 행렬) 구성
-for i in range(0, len(edge_info), 2):
-    n1, n2 = edge_info[i], edge_info[i + 1]
+for i in range(0, len(arr), 2):
+    n1, n2 = arr[i], arr[i + 1]
     G[n1][n2] = G[n2][n1] = 1  # 무방향 그래프이므로 양방향 연결
+
+# for i in range(E):
+#     v1, v2 = arr[i*2], arr[i*2+1]
+#     G[v1].append(v2) # 방향이 없으므로 양방향 연결
+#     G[v2].append(v1)
 
 # 그래프 확인
 # pprint(G)
