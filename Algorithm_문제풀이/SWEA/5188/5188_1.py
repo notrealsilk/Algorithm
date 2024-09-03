@@ -27,3 +27,4 @@ for t in range(1, T + 1):
 
     # 결과 출력
     print(f"#{t} {min_sum}")
+
