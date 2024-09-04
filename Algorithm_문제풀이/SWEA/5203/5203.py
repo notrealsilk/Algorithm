@@ -1,43 +1,39 @@
-import sys
-sys.stdin = open("sample_input.txt","r")
-
 def babygin(player):
-    # 뽑은 카드 정렬
-    player.sort()
-    # 베이비진 탐색
-    for j in range(1,5):
-        # run
-        if player[j-1]-1 == player[j] == player[j+1]+1 :
+    counts = [0] * 10  # 0부터 9까지의 숫자 빈도를 셀 배열
+    for num in player:
+        counts[num] += 1
+
+    # Triplet 확인
+    for count in counts:
+        if count >= 3:
             return True
-        # triplet
-        if player[j - 1] == player[j] == player[j + 1] :
+
+    # Run 확인
+    for i in range(8):  # 인덱스 에러 방지를 위해 0~7까지 체크
+        if counts[i] >= 1 and counts[i+1] >= 1 and counts[i+2] >= 1:
             return True
-    return False # 베이비진이 아니라면
+
+    return False
 
 T = int(input())
-for tc in range(1,T+1):
+for tc in range(1, T + 1):
     arr = list(map(int, input().split()))
 
     player1 = []
     player2 = []
+    winner = 0
 
-    # 플레이어1,2가 카드 뽑기
-    for i in range(len(arr)//2):
-        player1.append(arr[i*2])
-        player2.append(arr[i*2+1])
+    for i in range(6):
+        # 플레이어 1이 카드 뽑기
+        player1.append(arr[2 * i])
+        if len(player1) >= 3 and babygin(player1):
+            winner = 1
+            break
 
-    # 베이비진인지 확인
-    p_1 = babygin(player1)
-    p_2 = babygin(player2)
+        # 플레이어 2가 카드 뽑기
+        player2.append(arr[2 * i + 1])
+        if len(player2) >= 3 and babygin(player2):
+            winner = 2
+            break
 
-    # 승자 확인
-    if p_1 == True:
-        print(f"#{tc}", 1)
-    elif p_2 == True:
-        print(f"#{tc}", 2)
-    else:
-        print(f"#{tc}", 0)
-
-
-
-
+    print(f"#{tc} {winner}")
