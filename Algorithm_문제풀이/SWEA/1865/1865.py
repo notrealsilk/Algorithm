@@ -1,27 +1,30 @@
-import sys
-sys.stdin = open("input.txt","r")
+def backtracking(i, cur_prob):
+    global max_prob
+    # 가지치기 : 현재 확률이 지금까지 찾은 최대 확률보다 작으면 더 이상 진행할 필요 없음
+    if cur_prob <= max_prob:
+        return
+
+    # 기저조건
+    # 모든 일 배정했다면, 최대 확률 찾기
+    if i == N:
+        max_prob = max(max_prob, cur_prob)
+        return
+
+    # i번째 직원이 j번째 일을 맡았을 경우들을 탐색
+    for j in range(N):
+        if not assigned[j]:  # j번 일이 할당되지 않았을 때
+            assigned[j] = True  # 방문 표시
+            backtracking(i+1, cur_prob * (arr[i][j] / 100))  # 확률로 환산해서 할당
+            assigned[j] = False  # 방문 끝났으므로 반납
 
 T = int(input())
-for i in range(1, T+1):
-    N = int(input()) # N : 사람 수 이자 일 갯수
-    arr = [list(map(int,input().split())) for _ in range(N)] # Pi, j는 i번 사람이 j번 일을 성공할 확률을 퍼센트 단위
+for tc in range(1, T+1):
+    N = int(input())  # N : 사람 수 이자 일 갯수
+    arr = [list(map(int, input().split())) for _ in range(N)]  # Pi,j: i번 사람이 j번 일을 성공할 확률
 
-    working = [0] * N # i번째 사람(idx)이 맡을 일(인덱스 안의 값)
+    max_prob = 0  # 최대 성공 확률
+    assigned = [False] * N  # 할당 여부 표시
 
-    for j in range(N): # 일
-        cur_per = 0 # 현재 순회에서 일을 맡으면 좋은 직원의 확률
-        for i in range(N): # 직원
-            if cur_per < arr[i][j] : # 더 일을 잘하는 직원을 찾았다면
-                cur_per = arr[i][j]  # 갱신
+    backtracking(0, 1)  # 0번째 직원부터 시작, 초기 확률 = 1
 
-        # 직원에게 실제로 일 할당
-        if working[j]: # 근데! 이미 그 직원을 다른 일을 할당 받았다면
-            for k in range(N): # 아직 놀고있는 직원 찾기
-                if working[k] == 0: # 놀고 있는 직원 찾았다면
-                    pass
-
-
-        working[j] = cur_per
-
-
-
+    print(f"#{tc} {max_prob * 100:.6f}")  # 소수점 6자리까지 출력

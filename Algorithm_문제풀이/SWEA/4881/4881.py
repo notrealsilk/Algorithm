@@ -6,7 +6,6 @@ sys.stdin = open("sample_input.txt", "r")
 def dfs(m, N, row, used_col, cur_sum):
     # 기저조건 : 마지막 행까지 다 선택했으면 지금까지의 합을 반환
     if row == N:
-        print(cur_sum)
         return cur_sum
 
     min_sum = 100000  # 아주 큰 값으로 설정
@@ -17,7 +16,7 @@ def dfs(m, N, row, used_col, cur_sum):
             used_col[col] = True  # 그 열을 선택 표시
             result = dfs(m, N, row + 1, used_col, cur_sum + m[row][col]) # 선택한 후, 현재까지의 합을 갱신하고 다음 열을 찾기위해 다음 행 탐색 시작
             min_sum = min(min_sum, result)  # 최소값 갱신
-            used_col[col] = False  # 하나의 탐색 (모든 행의 열을 선택해서 합을 찾고, 최소합을 갱신)이 끝나면 다음 탐색을 위해 초기화
+            used_col[col] = False  # 하나의 탐색이 끝나면 다음 탐색을 위해 초기화
 
     return min_sum # 최종 결과
 
