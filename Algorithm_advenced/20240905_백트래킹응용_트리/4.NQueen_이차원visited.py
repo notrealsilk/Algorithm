@@ -21,6 +21,7 @@ def check(row, col):
         j += 1
 
     # # 왼쪽 대각선 확인
+    # !주의! zip()는 느림!!
     # for i, j in zip(range(row - 1, -1, -1), range(col - 1, -1, -1)):
     #     if visited[i][j] == 1:
     #         return False
@@ -36,14 +37,15 @@ def check(row, col):
 def dfs(row):
     global cnt
 
-    if row == N:
+    if row == N:# 퀸들을 모두 배치한 상태 = 리프노드
         cnt += 1
         return
 
+    # 유망한 지 검사하기
     for col in range(N):
-        if check(row, col):
-            visited[row][col] = 1
-            dfs(row + 1)
+        if check(row, col): # 유망하다면
+            visited[row][col] = 1 # 방문처리
+            dfs(row + 1) # 다음 행으로 가기
             visited[row][col] = 0  # Backtracking
 
 

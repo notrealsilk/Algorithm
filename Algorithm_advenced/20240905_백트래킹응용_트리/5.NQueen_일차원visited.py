@@ -18,6 +18,8 @@ def dfs(row):
         return
 
     for col in range(N):
+        # visited[row][col] = 1 을 visited[row]=col로 바꿀 수 ㅇ
+        # row행의 col 자리에 배치했다 ..메모리를 아끼는 방법
         visited[row] = col
         if not check(row):
             continue
