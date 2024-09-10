@@ -29,7 +29,7 @@ def union(x, y):
 
 # 예제 사용법
 n = 7  # 원소의 개수
-parents = make_set(n) # 집합생성, parents에 부모 정보를 저장
+parents = make_set(n) # 집합생성, parents에 부모 정보를 저장 # [0,1,2,3,4,5,6]
 
 union(1, 3)
 union(2, 3)
