@@ -1,6 +1,6 @@
 def make_set(n):
     p = [i for i in range(n)]  # 각 원소의 부모를 자신으로 초기화
-    r = [0] * n
+    r = [0] * n  # 시작 rank 는 모두 0으로 초기화
     return p, r
 
 
@@ -10,6 +10,8 @@ def find(x):
         return x
 
     # 경로 압축 (path compression)을 통해 부모를 루트로 설정
+    # parents[x]  # x 가 가리키고 있는 부모
+    # find(parents[x])  # x 의 부모로부터 대표자를 찾아와라.
     parents[x] = find(parents[x])
     return parents[x]
 
@@ -21,7 +23,7 @@ def union(x, y):
     if root_x == root_y:  # 이미 같은 집합이면 끝
         return
 
-    # # rank를 비교하여 더 작은 트리를 큰 트리 밑에 병합
+    # rank를 비교하여 더 작은 트리를 큰 트리 밑에 병합
     if ranks[root_x] > ranks[root_y]:
         parents[root_y] = root_x
     elif ranks[root_x] < ranks[root_y]:
