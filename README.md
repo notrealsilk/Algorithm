@@ -13,8 +13,8 @@
 
 1. [Algorithm_문제풀이](https://github.com/notrealsilk/Algorithm/tree/master/Algorithm_%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4) 
 
-   1) BJ
+   1) [BJ](https://github.com/notrealsilk/Algorithm/tree/master/Algorithm_%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4/BJ)
    
-   2) Programmers
+   2) [Programmers](https://github.com/notrealsilk/Algorithm/tree/master/Algorithm_%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4/Programmers)
 
-   3) SWEA
+   3) [SWEA](https://github.com/notrealsilk/Algorithm/tree/master/Algorithm_%EB%AC%B8%EC%A0%9C%ED%92%80%EC%9D%B4/SWEA)
